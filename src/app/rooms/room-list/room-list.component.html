@@ -1,0 +1,19 @@
+<mat-accordion multi="true" *ngIf="rooms.length > 0">
+    <mat-expansion-panel *ngFor="let room of rooms">
+      
+      <mat-expansion-panel-header>
+      <span style="font-size: larger;">Room Type : &nbsp;&nbsp;</span>  {{ room.roomtype }}
+      </mat-expansion-panel-header>
+      <p><span style="font-size: larger;">From :&nbsp;&nbsp; </span> {{ convert_date(room.from) }}</p>
+      <p><span style="font-size: larger;">To : &nbsp;&nbsp;</span>{{ convert_date(room.to) }} </p>
+      <p><span style="font-size: larger;">Breakfast : &nbsp;&nbsp;</span>{{ room.breakfast }} </p>
+      <p><span style="font-size: larger;">Air Conditioner : &nbsp;&nbsp;</span>{{  room.airconditioner }} </p>
+      <p><span style="font-size: larger;">Wake Up Service :&nbsp;&nbsp; </span>{{  room.wakeupservice }} </p>
+      <mat-action-row>
+        <button mat-button color="primary"(click)="onEdit(room.id)" >EDIT</button>
+        <button mat-button color="warn" (click)="onDelete(room.id)">DELETE</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <p class="info-text mat-body-1" *ngIf="rooms.length <= 0">No posts added yet!</p>
+  

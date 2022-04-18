@@ -1,0 +1,66 @@
+<mat-card>
+    <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+        
+        
+        <mat-form-field appearance="fill">
+        <mat-label>Room Type</mat-label>
+        <mat-select name="roomtype" [formControl]="rControl" [(value)]="enteredRoomType" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let rtype of rtypes" [value]="rtype.value">
+            {{rtype.viewValue}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="rControl.hasError('required')">Please choose a Room Type</mat-error>
+        </mat-form-field>
+
+        <mat-form-field color="accent" appearance="fill">
+            <mat-label>Choose a FROM date</mat-label>
+            <input name="from" matInput [matDatepicker]="picker1" [(ngModel)]="enteredFrom">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field color="accent" appearance="fill" >
+            <mat-label>Choose a TO date</mat-label>
+            <input name="to" matInput [matDatepicker]="picker2" [(ngModel)]="enteredTo">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+        </mat-form-field>
+
+        <mat-label>Breakfast:</mat-label>
+        <mat-radio-group 
+        name="breakfast"
+        ngModel
+        required
+        aria-label="Select an option"
+        #breakfast="ngModel">&nbsp;&nbsp;
+            <mat-radio-button value="true">&nbsp;Yes &nbsp;&nbsp;&nbsp;&nbsp; </mat-radio-button>
+            <mat-radio-button value="false">&nbsp;No</mat-radio-button>
+        </mat-radio-group>
+        <mat-error *ngIf="breakfast.invalid">Please Enter a To Date</mat-error>
+
+        <section>
+            
+                <mat-checkbox 
+                name="airconditioner"
+                ngModel
+                #airconditioner="ngModel"
+                >Air Conditioner</mat-checkbox>
+            
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-checkbox
+                name="wakeupservice"
+                ngModel
+                #wakeupservice="ngModel"
+                >Wake up service</mat-checkbox>
+            
+        </section>
+
+        <button
+            mat-raised-button
+            color="accent"
+            type="submit">Save Post</button>
+        </form>
+</mat-card>
